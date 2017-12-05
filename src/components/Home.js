@@ -16,21 +16,21 @@ class Home extends Component{
     }
 
     // insert componentWillMount:
+        // componentWillMount s invoked immediately before mounting occurs
     componentWillMount () {
+            // axios gets that data from "/api/featured" (the promise) then the data is set to the corresponding properties
         axios.get("/api/featured").then((response) => {
-            console.log(response.data);
             this.setState({ 
                 featured: response.data,
                 index: (~~(Math.random() * response.data.length) + 0),
                 posts: response.data,
             })
-            console.log(this.state.index)
-        }).catch( error => console.log(error) )
+        }).catch( console.log() )
     }
 
     render(){
         // map over your recommended blogs here, replace null.
-        const posts = null
+        const posts =  this.state.posts.map((e,i)=><BlogThumb key={i} blog={e}/>);
 
         return(
             <div className="content" >
