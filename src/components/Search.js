@@ -19,18 +19,19 @@ class Search extends Component{
     search ( event ) {
         // preventDefault() prevents the page refreshing after the form is submitted
         event.preventDefault();
-        axios.get(`/api/${this.state.searchType}?q=${this.state.searchTerm}`).then(response => {
-            if (this.state.searchType === 'blogs') {
-                this.props.history.push(makeQuery('/search?',{ q: this.state.searchTerm, type: this.state.searchType }))   // This line of code preserves the search history when hitting back after leaving the page
+        const { searchType, searchTerm } = this.state;
+        axios.get(`/api/${searchType}?q=${searchTerm}`).then( res => {
+            if (searchType === 'blogs') {
+                this.props.history.push(makeQuery('/search?',{ q: searchTerm, type: searchType }))   // This line of code preserves the search history when hitting back after leaving the page
                 this.setState({ 
-                    blogResults: response.data,
+                    blogResults: res.data,
                     userResults: []
                  });
             } else {
-                this.props.history.push(makeQuery('/search?',{ q: this.state.searchTerm, type: this.state.searchType }))   // This line of code preserves the search history when hitting back after leaving the page
-                this.setState({ 
-                    userResults: response.data,
-                    userResults: []
+                this.props.history.push(makeQuery('/search?',{ q: searchTerm, type: searchType }))   // This line of code preserves the search history when hitting back after leaving the page
+                this.setState({
+                    blogResults: [],
+                    userResults: res.data
                 });
             }
         }).catch( console.log() )
@@ -39,8 +40,8 @@ class Search extends Component{
     
     render(){
         // map over the blogResults and userResults here, replace the empty arrays.
-        const blogResults = this.state.blogResults.map((e, i) => <BlogTile key={i} blog={e} />);
-        const userResults = this.state.userResults.map((e, i) => <BlogTile key={i} user={e} />);
+        const blogResults = this.state.blogResults.map( (e, i) => <BlogTile key={i} blog={e} /> );
+        const userResults = this.state.userResults.map( (e, i) => <UserTile key={i} user={e} /> );
 
         return(
             <div className='content search-view' >

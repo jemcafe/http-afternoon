@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ConfirmModal from './subcomponents/ConfirmModal';
+import axios from 'axios';
 
 // import axios
 
@@ -19,6 +20,18 @@ class Add extends Component {
     }
 
     // insert post function
+    post () {
+        let { title, subTitle, image, text } = this.state;
+        let body = {
+            title: title,
+            subTitle: subTitle,
+            image: image,
+            text: text
+        };
+        axios.post(`/api/blogs`, body).then( res => {
+            this.props.history.push(`/blog/${res.data.id}`);
+        }).catch( err => console.log(err) );
+    }
     
     
     render() {
