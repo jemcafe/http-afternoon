@@ -18,12 +18,26 @@ class User extends Component{
     // insert componentWillMount
     componentWillMount(){
         axios.get(`/api/user/${this.props.match.params.id}`).then( res => {
+            console.log(res.data);
             this.setState({ user: res.data });
         }).catch( err => console.log(err) );
 
         axios.get(`/api/blogs?userID=${this.props.match.params.id}`).then( res => {
+            console.log(res.data);
             this.setState({ posts: res.data });
         }).catch( err => console.log(err) );
+
+        // BLACK DIAMOND
+        // axios.all(
+        //     () => axios.get(`/api/user/${this.props.match.params.id}`),
+        //     () => axios.get(`/api/blogs?userID=${this.props.match.params.id}`)
+        // ).then( axios.spread( ( usr, blgs ) => {
+        //     console.log(usr, blgs);
+        //     this.setState({ 
+        //         user: usr.data, 
+        //         posts: blgs 
+        //     });
+        // })).catch( err => console.log(err) );
     }
     
 

@@ -23,7 +23,7 @@ class NewUser extends Component{
 
     // insert updateUser    
     updateUser(){
-        axios.put(`/api/users/${this.props.match.params.id}`, this.state).then( res => {
+        axios.put(`/api/user/${this.props.match.params.id}`, this.state).then( res => {
             const user = res.data;
             this.props.history.push(`/user/${user.id}`);
         }).catch( err => console.log(err) );
@@ -31,7 +31,7 @@ class NewUser extends Component{
 
     // insert deleteUser
     deleteUser(){
-        axios.delete(`/api/users/${this.props.match.params.id}`).then( res => {
+        axios.delete(`/api/user/${this.props.match.params.id}`).then( res => {
             this.props.history.push(`/search/`);
         }).catch( err => console.log(err) );
     }

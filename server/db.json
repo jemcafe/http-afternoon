@@ -343,6 +343,24 @@
       "name": "Leo",
       "img": "https://unsplash.it/300/?random",
       "desc": "I'm not real. I'm just a pseudonym of a guy that doesn't like waiting for fast food workers to figure out how to spell his name."
+    },
+    {
+      "name": "Joe",
+      "img": "http://www.perthbifolddoors.net.au/145-916-thickbox/solid-timber-entrance-door-package.jpg",
+      "desc": "I'm a door",
+      "id": 13
+    },
+    {
+      "name": "Boss",
+      "img": "https://www.doorstore.co.uk/prodimages/storm%20round%20rose%20nb+pc.jpg",
+      "desc": "I\"m a door handle",
+      "id": 14
+    },
+    {
+      "name": "Jose",
+      "img": "https://img.rt.com/files/2016.10/original/57f4cbb3c36188ad458b45fc.jpg",
+      "desc": "I'm a fish ",
+      "id": 15
     }
   ]
 }

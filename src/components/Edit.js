@@ -53,7 +53,7 @@ class Edit extends Component {
     // Insert into the deletePost 
     deletePost () {
         axios.delete(`/api/blog/${this.props.match.params.id}`).then( res => {
-            this.props.history.push('/search')
+            this.props.history.push('/search');
         }).catch( err => console.log(err) );
     }
     
